@@ -43,6 +43,7 @@ class Mailchimp
                 'tags'          => array_merge($this->tags, [$file])
             ]
         );
+
         $response = wp_remote_post('https://' . substr($this->api_key, strpos($this->api_key, '-') + 1) . '.api.mailchimp.com/3.0/lists/' . $this->list_id . '/members/' . md5(strtolower($email)), $args);
 
         $body = json_decode($response['body']);

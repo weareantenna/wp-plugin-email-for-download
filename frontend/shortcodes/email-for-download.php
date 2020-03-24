@@ -40,7 +40,7 @@ class EmailForDownload
 
         $output = '<div id="email_for_download_container" class="efd-container ' . $this->attributes['form_container_class'] . '">';
         $output .= '<form action="' . esc_url(admin_url('admin-post.php')) . '" method="POST" class="efd-form">';
-        $output .= '<input type="text" name="email_for_download_email" value="' . $validators['mail'] . '" class="form-control efd-field efd-email' . (array_key_exists('mail', $validators) ? ' error' : '') . '" placeholder="E-mail" required>';
+        $output .= '<input type="email" name="email_for_download_email" value="' . $validators['mail'] . '" class="form-control efd-field efd-email' . ($validators['mail'] ? ' error' : '') . '" placeholder="E-mail" required>';
         $output .= '<button type="submit" name="email_for_download_submit" class="form__btn btn btn-link efd-button efd-submit">Verzenden</button>';
         $output .= '<input type="hidden" name="email_for_download_attachment_id" value="' . $crypter->encrypt($this->attributes['attachment_id']) . '">';
         $output .= '<input type="hidden" name="email_for_download_redirect_url" value="' . $this->attributes['redirect_url'] . '">';
