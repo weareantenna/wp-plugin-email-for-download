@@ -37,11 +37,11 @@ class Mailchimp
             'headers' => array(
                 'Authorization' => 'Basic ' . base64_encode('user:' . $this->api_key)
             ),
-            'body'    => [
+            'body'    => json_encode([
                 'email_address' => $email,
                 'status'        => $status,
                 'tags'          => array_merge($this->tags, [$file])
-            ]
+            ])
         );
 
         $response = wp_remote_post('https://' . substr($this->api_key, strpos($this->api_key, '-') + 1) . '.api.mailchimp.com/3.0/lists/' . $this->list_id . '/members/' . md5(strtolower($email)), $args);
